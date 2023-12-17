@@ -1,7 +1,7 @@
 [gd_scene load_steps=27 format=3 uid="uid://dowvk531n4y5x"]
 
-[ext_resource type="Script" path="res://RespawnArea.gd" id="1_l3d50"]
-[ext_resource type="PackedScene" uid="uid://c4dyfiufsjalg" path="res://Player.tscn" id="2_lj6sm"]
+[ext_resource type="Script" path="res://test_level/RespawnArea.gd" id="1_l3d50"]
+[ext_resource type="PackedScene" uid="uid://c4dyfiufsjalg" path="res://test_level/Player.tscn" id="2_lj6sm"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m2n6p"]
 size = Vector3(2, 1, 2)

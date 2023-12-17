@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c4dyfiufsjalg"]
 
-[ext_resource type="Script" path="res://Player.gd" id="1_b2pna"]
+[ext_resource type="Script" path="res://test_level/Player.gd" id="1_b2pna"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_utock"]
 height = 1.2
