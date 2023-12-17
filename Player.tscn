@@ -1,0 +1,73 @@
+[gd_scene load_steps=12 format=3 uid="uid://c4dyfiufsjalg"]
+
+[ext_resource type="Script" path="res://Player.gd" id="1_b2pna"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_utock"]
+height = 1.2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_odvdh"]
+albedo_color = Color(0.819608, 0.490196, 0.278431, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_bh37h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wpptj"]
+albedo_color = Color(1, 1, 0.27451, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_d0no6"]
+radius = 0.15
+height = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_na8ux"]
+albedo_color = Color(0, 0, 0, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_dfvpl"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ifdrg"]
+albedo_color = Color(1, 0.360784, 0.121569, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_1s7d5"]
+radius = 0.3
+height = 0.25
+is_hemisphere = true
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ig0ib"]
+
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
+script = ExtResource("1_b2pna")
+
+[node name="Body" type="MeshInstance3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, -0.5, 0)
+mesh = SubResource("CapsuleMesh_utock")
+surface_material_override/0 = SubResource("StandardMaterial3D_odvdh")
+
+[node name="Head" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("SphereMesh_bh37h")
+surface_material_override/0 = SubResource("StandardMaterial3D_wpptj")
+
+[node name="Eye" type="MeshInstance3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.2, 0.4)
+mesh = SubResource("SphereMesh_d0no6")
+surface_material_override/0 = SubResource("StandardMaterial3D_na8ux")
+
+[node name="Eye2" type="MeshInstance3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.2, 0.4)
+mesh = SubResource("SphereMesh_d0no6")
+surface_material_override/0 = SubResource("StandardMaterial3D_na8ux")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Head"]
+transform = Transform3D(1, 0, 0, 0, 0.0866025, 0.65, 0, -0.05, 1.12583, 0, 0.3, 0)
+mesh = SubResource("CylinderMesh_dfvpl")
+surface_material_override/0 = SubResource("StandardMaterial3D_ifdrg")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Body/Head/MeshInstance3D"]
+transform = Transform3D(-1.5, -1.57361e-06, 0, -1.31134e-07, 18, 0, 0, 0, 1.2, 0, 1, -0.0769231)
+mesh = SubResource("SphereMesh_1s7d5")
+surface_material_override/0 = SubResource("StandardMaterial3D_ifdrg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)
+shape = SubResource("CapsuleShape3D_ig0ib")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 4, 6)
