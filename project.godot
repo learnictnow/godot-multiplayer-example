@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Godot Test Environment"
+config/name="Godot Multiplayer Example Environment"
 run/main_scene="res://multiplayer_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://test_level/icon.svg"

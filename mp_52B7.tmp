@@ -1,6 +1,7 @@
-[gd_scene load_steps=26 format=3 uid="uid://dowvk531n4y5x"]
+[gd_scene load_steps=27 format=3 uid="uid://dowvk531n4y5x"]
 
-[ext_resource type="Script" path="res://test_level/RespawnArea.gd" id="1_l3d50"]
+[ext_resource type="Script" path="res://mp_test_environment.gd" id="1_7qu0m"]
+[ext_resource type="Script" path="res://test_level/RespawnArea.gd" id="2_qdoig"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_m2n6p"]
 size = Vector3(2, 1, 2)
@@ -76,6 +77,8 @@ albedo_color = Color(1, 0, 0, 1)
 size = Vector3(75, 1, 75)
 
 [node name="TestEnvironment" type="Node3D"]
+script = ExtResource("1_7qu0m")
+player_scene = "res://Player.tscn"
 
 [node name="Level" type="Node3D" parent="."]
 
@@ -341,7 +344,7 @@ shape = SubResource("ConcavePolygonShape3D_i50pm")
 
 [node name="RespawnArea" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -10, 0)
-script = ExtResource("1_l3d50")
+script = ExtResource("2_qdoig")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="RespawnArea"]
 mesh = SubResource("PlaneMesh_6uvgf")
@@ -365,5 +368,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 3, -2)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 29, 0)
+
+[node name="Players" type="Node3D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Player.tscn")
+spawn_path = NodePath("../Players")
+spawn_limit = 4
 
 [connection signal="body_entered" from="RespawnArea/MeshInstance3D/Area3D" to="RespawnArea" method="_on_area_3d_body_entered"]

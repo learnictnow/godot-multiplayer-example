@@ -2,14 +2,13 @@
 
 [ext_resource type="Script" path="res://multiplayer_menu.gd" id="1_jiv4u"]
 
-[node name="Multiplayer" type="Node"]
+[node name="MultiplayerMenu" type="Node"]
 script = ExtResource("1_jiv4u")
-level = "res://test_level/test_environment.tscn"
+mp_level = "res://mp_test_environment.tscn"
 
 [node name="Level" type="Node" parent="."]
 
 [node name="LevelSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("")
 spawn_path = NodePath("../Level")
 spawn_limit = 1
 

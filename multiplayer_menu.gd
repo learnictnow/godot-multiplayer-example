@@ -2,7 +2,7 @@ extends Node
 
 const PORT = 4433
 
-@export_file("*.tscn") var level
+@export_file("*.tscn") var mp_level
 
 func _ready():
 	# Start paused
@@ -11,9 +11,9 @@ func _ready():
 	multiplayer.server_relay = false
 
 	# Automatically start the server in headless mode.
-	#if DisplayServer.get_name() == "headless":
-		#print("Automatically starting dedicated server")
-		#_on_host_pressed.call_deferred()
+	if DisplayServer.get_name() == "headless":
+		print("Automatically starting dedicated server")
+		_on_host_pressed.call_deferred()
 
 
 func _on_host_pressed():
@@ -45,10 +45,14 @@ func start_game():
 	# Hide the UI and unpause to start the game.
 	$UI.hide()
 	get_tree().paused = false
+	
+	$LevelSpawner.add_spawnable_scene(mp_level)
+	
 	# Only change level on the server.
 	# Clients will instantiate the level via the spawner.
 	if multiplayer.is_server():
-		change_level.call_deferred(load("res://level.tscn"))
+		
+		change_level.call_deferred(load(mp_level))
 
 
 # Call this function deferred and only on the main authority (server).
@@ -66,4 +70,4 @@ func _input(event):
 	if not multiplayer.is_server():
 		return
 	if event.is_action("ui_home") and Input.is_action_just_pressed("ui_home"):
-		change_level.call_deferred(load(level))
+		change_level.call_deferred(load(mp_level))
