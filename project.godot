@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="Godot Test Environment"
-run/main_scene="res://test_level/test_environment.tscn"
+run/main_scene="res://multiplayer_menu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://test_level/icon.svg"
+
+[display]
+
+window/size/viewport_width=400
+window/size/viewport_height=250
 
 [input]
 
